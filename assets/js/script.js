@@ -3,6 +3,7 @@ var songEl = document.getElementById("songName");
 var searchButton = document.getElementById("search");
 var coverEl = document.getElementById("cover");
 var factsEl = document.getElementById("facts");
+var lyricsEl = document.getElementById("lyrics");
 
 function searchHandler(event) {
     var artist = artistEl.value.trim();
@@ -11,6 +12,8 @@ function searchHandler(event) {
     var song = songEl.value.trim();
 	song = song.split(" ");
 	song = song.join("%20");
+	console.log(artist);
+	console.log(song);
     var apiUrl = "https://api.genius.com/search?access_token=zJR5ej6XMOAz17iEUDh32hGpZCmgwt7yNN3radinKSnI3i-Sx60laizqFjIEQkaN&q="+artist+"%20"+song
     fetch(apiUrl)
     .then(response => response.json()).then(json => {
@@ -19,21 +22,29 @@ function searchHandler(event) {
         fetch(songApiUrl)
         .then(function(response) {
             response.json().then(function(data) {
-                coverEl.src = data.response.song.header_image_url;
-                displayFacts(data);
+                displayCover(data);
+                displayLyricsLink(data);
                 console.log(data);
             });
         });
     });
 };
 
-function displayFacts(data) {
-    var facts = data.response.song.description.dom.children
-    for (i=0; i<facts.length; i++) {
-        console.log(facts[i].children);
-    }
-    
+function displayCover(data) {
+    coverEl.src = data.response.song.header_image_url;
 }
+
+function displayLyricsLink(data) {
+	lyricsEl.innerHTML = data.response.song.embed_content;
+}
+
+// function displayFacts(data) {
+//     var facts = data.response.song.description.dom.children
+//     for (i=0; i<facts.length; i++) {
+//         console.log(facts[i].children);
+//     }
+    
+// }
 // fetch("https://api.genius.com/search?access_token=zJR5ej6XMOAz17iEUDh32hGpZCmgwt7yNN3radinKSnI3i-Sx60laizqFjIEQkaN&q=Kendrick%20Lamar%20king%20kunta")
 // .then(response => response.json()).then(json => {
 //     console.log(json);
