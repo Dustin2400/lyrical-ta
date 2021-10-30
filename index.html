@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-
 </head>
 <body>
 
@@ -33,7 +32,8 @@
           <label class="label" for="artistName"><p class="title">Artist Name</p></label>
           <input class="input is-primary" type="text" id="artistName">
 
-      </div>
+        
+            
 
     <div class= "column">
 
@@ -52,7 +52,7 @@
 
     <div class="field is-grouped column is-justify-content-center	is-align-items-center	">
     
-          <button class="button is-primary">
+          <button class="button is-primary" id="search">
             Submit
           </button>
     </div>
@@ -66,7 +66,7 @@
   <div class="tile is-ancestor">
     <div class="tile is-4 is-vertical is-parent">
       <div class="tile is-child box">
-        <p class="title">Image</p>
+        <p class="title"><img src="" id="cover"/></p>
 
       </div>
       <div class="tile is-child box">
@@ -75,12 +75,15 @@
     </div>
     <div class="tile is-parent">
       <div class="tile is-child box">
-        <p class="title">Lyrics</p>
+        <p class="title" id="lyrics">Lyrics</p>
         </div>
     </div>
   </div>
 </main>
     
+    <div id="lyrics">
+
+    </div>
 </body>
 <script src="assets/js/script.js"></script>
 <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
