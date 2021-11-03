@@ -12,9 +12,14 @@ var infoBioEl = document.getElementById("info-bio");
 var infoGenreEl = document.getElementById("info-genre");
 var infoOriginEl = document.getElementById("info-origin");
 var infoDateEl = document.getElementById("info-date");
+var modalDlg = document.querySelector('#image-modal');
+var imageModalCloseBtn = document.querySelector('.image-modal-close');
 
 function searchHandler(event) {
     var artist = artistEl.value.trim();
+	if (!artist){
+		modalDlg.classList.add('is-active');
+	}
 	artist = artist.split(" ");
 	artist = artist.join("%20");
     var song = songEl.value.trim();
@@ -24,18 +29,24 @@ function searchHandler(event) {
     console.log(apiUrl);
 	fetch(apiUrl)
     .then(response => response.json()).then(json => {
-        var songId = json.response.hits[0].result.id;
-        var songApiUrl = "https://api.genius.com/songs/"+songId+"?access_token=zJR5ej6XMOAz17iEUDh32hGpZCmgwt7yNN3radinKSnI3i-Sx60laizqFjIEQkaN";
-        fetch(songApiUrl)
-        .then(function(response) {
-            response.json().then(function(data) {
-                displayCover(data);
-                displayLyricsLink(data);
-                console.log(data);
-            });
-        });
+		if (json.response.hits[0]) {
+			var songId = json.response.hits[0].result.id;
+			var songApiUrl = "https://api.genius.com/songs/"+songId+"?access_token=zJR5ej6XMOAz17iEUDh32hGpZCmgwt7yNN3radinKSnI3i-Sx60laizqFjIEQkaN";
+			fetch(songApiUrl)
+			.then(function(response) {
+				console.log(response);
+					response.json().then(function(data) {
+						displayCover(data);
+						displayLyricsLink(data);
+						getArtistFacts (artist);
+						console.log(data);
+				});
+			});
+		} else {
+			modalDlg.classList.add('is-active');
+
+		}
     });
-    getArtistFacts (artist);
 }
 
 function getArtistFacts (artist) {
@@ -64,5 +75,7 @@ function displayLyricsLink(data) {
 	lyricsEl.innerHTML = data.response.song.embed_content;
 }
 
-
+imageModalCloseBtn.addEventListener('click', function(){
+	modalDlg.classList.remove('is-active');
+  });
 searchButton.addEventListener("click", searchHandler);
