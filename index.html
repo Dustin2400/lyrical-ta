@@ -24,30 +24,30 @@
 
     </header>
 
-  <section>
+  <section >
 
     <div class="field is-horizontal is-flex-wrap-wrap columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd mx-auto my-auto box">
+     
       <div class= "column">
 
           <label class="label" for="artistName"><p class="title">Artist Name</p></label>
-          <input class="input is-primary" type="text" id="artistName">
+          <input class="input is-primary" type="text" id="artistName">  
 
-        
-            
+      </div>
 
-    <div class= "column">
+      <div class= "column">
 
       <label class="label" for="songName"><p class="title">Song Name</p></label>
       <input class="input is-primary" type="text" id="songName">
 
-    </div>
+      </div>
 
-    <div class="field is-grouped column is-justify-content-center	is-align-items-center	">
+      <div class="field is-grouped column is-justify-content-center	is-align-items-center	">
     
           <button class="button is-primary" id="search">
             Submit
           </button>
-    </div>
+      </div>
 
   <div>
 
@@ -56,35 +56,45 @@
 
 <main class = "box mx-auto my-auto box notification is-danger ">
   <div class="tile is-ancestor">
-    <div class="tile is-4 is-vertical is-parent">
-      <div class="tile is-child box">
-        <p class="title"><img src="" id="cover"/></p>
-
-      </div>
-      <div class="tile is-child box">
-        <p class="title">
-          <p>Song: <span id="info-song"></span></p>
-          <br/>
-          <p>Artist: <span id="info-artist"></span></p>
-          <br/>
-          <p>Album: <span id="info-album"></span></p>
-          <br/>
-          <p>Release Date: <span id="info-date"></span></p>
-          <br/>
-          <p>Genre: <span id="info-genre"></span></p>
-          <br/>
-          <p>From: <span id="info-origin"></span></p>
-          <br/>
-          <p>Biography: <span id="info-bio"></span></p>
-
-        </p>
-      </div>
-    </div>
-    <div class="tile is-parent">
-      <div class="tile is-child box">
-        <p class="title" id="lyrics">Lyrics</p>
+      <div class="tile is-4 is-vertical">
+        <div class="tile is-parent">
+        <div class="tile is-child box">
+          <p class="title"><img src="" id="cover"/>Album Cover</p>
         </div>
-    </div>
+      </div>
+
+        <div class="tile is-parent">
+          <div class="tile is-child box">
+            <p class="title" id="lyrics">Lyrics</p>
+          </div>
+        </div>
+
+        <div class="tile is-parent">
+          <div class="tile is-child box">
+            <p class="title" id="recentSearches">Recent Searches</p>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="tile is-parent">
+        <div class="tile is-child box">
+          <p class="title"> Artist/Song Information</p>
+            <p>Song: <span id="info-song"></span></p>
+            <br/>
+            <p>Artist: <span id="info-artist"></span></p>
+            <br/>
+            <p>Album: <span id="info-album"></span></p>
+            <br/>
+            <p>Release Date: <span id="info-date"></span></p>
+            <br/>
+            <p>Genre: <span id="info-genre"></span></p>
+            <br/>
+            <p>From: <span id="info-origin"></span></p>
+            <br/>
+            <p>Biography: <span id="info-bio"></span></p> 
+        </div>
+      </div>
   </div>
 </main>
     
