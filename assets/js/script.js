@@ -14,6 +14,7 @@ var infoOriginEl = document.getElementById("info-origin");
 var infoDateEl = document.getElementById("info-date");
 var modalDlg = document.querySelector('#image-modal');
 var imageModalCloseBtn = document.querySelector('.image-modal-close');
+var songArr = [];
 
 function searchHandler(event) {
     var artist = artistEl.value.trim();
@@ -39,7 +40,7 @@ function searchHandler(event) {
 						displayCover(data);
 						displayLyricsLink(data);
 						getArtistFacts (artist);
-						console.log(data);
+						saveSongs(artist, song);
 				});
 			});
 		} else {
@@ -75,7 +76,45 @@ function displayLyricsLink(data) {
 	lyricsEl.innerHTML = data.response.song.embed_content;
 }
 
+function saveSongs(artist, song) {
+	songArr = [];
+	var sentence = artist.split("%20");
+	var capSentence = [];
+    for(i=0; i<sentence.length; i++) {
+        var word = sentence[i];
+        word = word.split('')
+        word[0] = word[0].toUpperCase();
+        word = word.join('');
+        capSentence.push(word);
+        }
+    artist = capSentence.join(" ");
+	var sentence = song.split("%20");
+	var capSong = [];
+    for(i=0; i<sentence.length; i++) {
+        var word = sentence[i];
+        word = word.split('')
+        word[0] = word[0].toUpperCase();
+        word = word.join('');
+        capSong.push(word);
+        };
+    song = capSong.join(" ");
+	songArr.push({
+		artist: artist,
+		song: song
+	});
+	localStorage.setItem("songs", JSON.stringify(songArr));
+}
+
+function loadSongs () {
+	songArr = JSON.parse(localStorage.getItem("songs"));
+	if(!songArr){
+		songArr=[];
+	};
+	.innerHTML=songArr[0].song + " by " + songArr[0].artist;
+
+}
+
 imageModalCloseBtn.addEventListener('click', function(){
 	modalDlg.classList.remove('is-active');
-  });
+});
 searchButton.addEventListener("click", searchHandler);
