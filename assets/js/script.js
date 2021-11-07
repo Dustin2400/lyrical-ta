@@ -14,6 +14,7 @@ var infoOriginEl = document.getElementById("info-origin");
 var infoDateEl = document.getElementById("info-date");
 var modalDlg = document.querySelector('#image-modal');
 var imageModalCloseBtn = document.querySelector('.image-modal-close');
+var recentSearchesEl = document.querySelector('#recentSearches');
 var songArr = [];
 
 function searchHandler(event) {
@@ -40,6 +41,7 @@ function searchHandler(event) {
 						displayCover(data);
 						displayLyricsLink(data);
 						getArtistFacts (artist);
+						loadSongs();
 						saveSongs(artist, song);
 				});
 			});
@@ -110,7 +112,7 @@ function loadSongs () {
 	if(!songArr){
 		songArr=[];
 	};
-	.innerHTML=songArr[0].song + " by " + songArr[0].artist;
+	recentSearchesEl.innerHTML="Previous Search<br>" + songArr[0].song + " by " + songArr[0].artist;
 
 }
 
@@ -118,3 +120,4 @@ imageModalCloseBtn.addEventListener('click', function(){
 	modalDlg.classList.remove('is-active');
 });
 searchButton.addEventListener("click", searchHandler);
+loadSongs();
