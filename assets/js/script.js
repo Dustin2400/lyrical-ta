@@ -104,6 +104,9 @@ function saveSongs(artist, song) {
 		artist: artist,
 		song: song
 	});
+	console.log(artist)
+	console.log(song);
+	console.log(songArr);
 	localStorage.setItem("songs", JSON.stringify(songArr));
 }
 
@@ -111,9 +114,9 @@ function loadSongs () {
 	songArr = JSON.parse(localStorage.getItem("songs"));
 	if(!songArr){
 		songArr=[];
-	};
-	recentSearchesEl.innerHTML="Previous Search<br>" + songArr[0].song + " by " + songArr[0].artist;
-
+	} else {
+		recentSearchesEl.innerHTML="Previous Search<br>" + songArr[0].song + " by " + songArr[0].artist;
+	}
 }
 
 imageModalCloseBtn.addEventListener('click', function(){
